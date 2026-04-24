@@ -166,6 +166,16 @@ client.on('message', async (msg) => {
 
   // Groups ignore karo
   if (msg.from.includes('@g.us')) return;
+  // Newsletters / channels / broadcasts ignore karo
+  if (
+    msg.from.includes('@newsletter') ||
+    msg.from.includes('@broadcast') ||
+    msg.from === 'status@broadcast'
+  ) {
+    return;
+  }
+  // Sirf direct user chats handle karo
+  if (!msg.from.endsWith('@c.us')) return;
 
   // Bot ready nahi toh skip
   if (!isReady) {
